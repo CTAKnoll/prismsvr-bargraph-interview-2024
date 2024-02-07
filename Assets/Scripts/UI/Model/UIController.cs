@@ -11,11 +11,8 @@ public abstract class UIController<TStaticView> : IUIController where TStaticVie
     public IUIController LogicalParent { get; set; }
     
     protected HashSet<IUIController> Children = new();
-    protected UIActiveMutex ActivityMutex;
     protected UIDriver UiDriver;
     protected TStaticView View { get; private set; }
-
-    public bool IsActiveUI => ActivityMutex != null || LogicalParent is { IsActiveUI: true };
     private bool ModelDirty = false;
 
     public UIController(TStaticView view)
@@ -90,12 +87,10 @@ public abstract class UIController<TView, TModel> : IUIController where TView : 
     public IUIController LogicalParent { get; set; }
     
     protected HashSet<IUIController> Children = new();
-    protected UIActiveMutex ActivityMutex;
     protected UIDriver UiDriver;
     protected TView View { get; private set; }
     protected TModel Model;
 
-    public bool IsActiveUI => ActivityMutex != null || LogicalParent is { IsActiveUI: true };
     private bool ModelDirty = false;
 
     public UIController(TView view, TModel model = default)
@@ -155,7 +150,8 @@ public abstract class UIController<TView, TModel> : IUIController where TView : 
     public virtual void Close()
     {
         CloseChildren();
-        LogicalParent.RemoveChild(this);
+        if(LogicalParent != null)
+            LogicalParent.RemoveChild(this);
         UiDriver.UnregisterForAll(View);
         View.Destroy();
     }

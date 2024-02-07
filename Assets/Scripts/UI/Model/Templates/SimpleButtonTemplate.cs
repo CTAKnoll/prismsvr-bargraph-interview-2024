@@ -1,4 +1,4 @@
-using UI.Mission;
+using UI.Core;
 using UnityEngine;
 
 namespace UI.Model.Templates

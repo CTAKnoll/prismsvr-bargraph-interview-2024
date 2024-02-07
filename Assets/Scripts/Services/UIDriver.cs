@@ -47,11 +47,11 @@ namespace Services
                 }
             }
         }
-        public Vector3 PointerPosition => pointerData.position;
+        public Vector3 PointerWorldPosition => Root.camera.ScreenToWorldPoint(pointerData.position);
 
         private InputDevice currentInputDevice;
         public UIInputMode InputMode;
-        public Transform Root;
+        public UIRoot Root;
 
         private const string GAMEPAD_CONTROL_GROUP = "Gamepad";
         
@@ -59,7 +59,7 @@ namespace Services
         {
             ServiceLocator.RegisterService(this);
             pointerData = new PointerEventData(EventSystem.current);
-            Root = root.transform;
+            Root = root;
             
             root.point.action.performed += OnPointerMove;
             root.tap.action.performed += OnTap;

@@ -1,5 +1,5 @@
-using UI.Mission;
-using UI.Model.Templates;
+using UI.Core;
+using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
@@ -7,9 +7,12 @@ namespace Services
 {
     public class UIRoot : UIInteractable
     {
-        public  GraphicRaycaster raycaster;
+        [Header("Core Objects")]
+        public Camera camera;
+        public GraphicRaycaster raycaster;
         public PlayerInput input;
         
+        [Header("Input Actions")]
         public InputActionReference point; 
         public InputActionReference navigate; 
         public InputActionReference tap; 
@@ -19,16 +22,16 @@ namespace Services
         public InputActionReference scroll;
         public InputActionReference back;
 
-        public MissionSelectorTemplate MissionSelectorPrefabDEBUG;
+        [Header("Top Level Views")] 
+        public SimpleButtonView TestButton;
 
         private UIDriver Controller;
+        
 
         // The UIRoot inverts the normal controller/view power balance because it needs to bootstrap the UI system
         public void Awake()
         { 
             Controller = new UIDriver(this);
-            
-            Controller.AddChild(new MissionSelectorController(MissionSelectorPrefabDEBUG, transform));
         }
     }
 }

@@ -1,0 +1,15 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1ab65df3ff34f3b8071dcad4295058e, type: 3}
+  m_Name: GraphElementTemplate
+  m_EditorClassIdentifier: 
+  Prefab: {fileID: 3166728973192816795, guid: 48e4d99db89af4648b634e63c2bbfeff, type: 3}
